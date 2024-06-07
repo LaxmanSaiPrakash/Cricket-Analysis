@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Similar Player Analysis</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    body {
+      background-image: url("C:\Users\munag\Desktop\CricAnalyticts\venv\static\images\Logo.png");
+    }
+
+    .left-column {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: auto;
+    }
+
+    .right-column {
+      width: 50%;
+      margin: auto;
+    }
+
+    .centered-card {
+      margin: auto;
+      box-shadow: 10px 10px 8px #888888;
+    }
+
+    header h4 {
+
+      font-family: sans-serif;
+      font-weight: 600;
+      background-image: conic-gradient(#553c9a, #ee4b2b, #00c2cb, #553c9a);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      margin-left: 100px;
+      margin-top: 25px;
+    }
+
+    .Logo {
+      width: 80px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .Navbar {
+      background-color: rgb(66, 201, 247);
+    }
+
+    .bg-card {
+      background-color: rgb(156, 225, 248);
+      box-shadow: 10px 10px 8px #888888;
+    }
+
+    .description {
+      font-weight: bold;
+      margin-top: 50px;
+      margin-left: 170px;
+    }
+
+    .sold {
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      --color: rgb(66, 201, 247);
+      font-family: inherit;
+      display: inline-block;
+      width: 8em;
+      height: 2.6em;
+      line-height: 2.5em;
+      margin: 20px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--color);
+      transition: color .5s;
+      z-index: 1;
+      font-size: 17px;
+      border-radius: 6px;
+      font-weight: 500;
+      color: var(--color);
+    }
+
+    button:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      background: var(--color);
+      height: 150px;
+      width: 200px;
+      border-radius: 50%;
+    }
+
+    button:hover {
+      color: #fff;
+    }
+
+    button:before {
+      top: 100%;
+      left: 100%;
+      transition: all .7s;
+    }
+
+    button:hover:before {
+      top: -30px;
+      left: -30px;
+    }
+
+    button:active:before {
+      background: #03fb0f;
+      transition: background 0s;
+    }
+
+    .ok-button {
+
+      color: rgb(255, 255, 255);
+      width: 100px;
+      height: 30px;
+      text-align: center;
+      border-width: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .equal-height {
+      height: 38px;
+      /* Adjust this value as needed */
+    }
+
+    .input-group.align-items-center {
+      display: flex;
+      align-items: center;
+
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-lightblue Navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="image" class="Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" style="color:white;" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color:white;" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="color:white;" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Requirements
+            </a>
+            <form action="/similar" method="post" class="form">
+              {% if category == "TopOrder" or category== "MiddleOrder" %}
+              <ul class="dropdown-menu">
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck1" name="sr" value="3"><label
+                    class="form-check-label" for="exampleCheck1">SR.</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck2" name="age" value="4"><label
+                    class="form-check-label" for="exampleCheck2">Age</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck3" name="spin" value="7"><label
+                    class="form-check-label" for="exampleCheck3">Spin</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck4" name="pace" value="8"><label
+                    class="form-check-label" for="exampleCheck4">Pace</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck5" name="innings" value="1"><label
+                    class="form-check-label" for="exampleCheck5">innings</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck6" name="price" value="6"><label
+                    class="form-check-label" for="exampleCheck6">Price</label></li>
+                <li><button type="submit" class="ok-button">Ok</button></li>
+              </ul>
+              {% elif category == "AllRounder" %}
+              <ul class="dropdown-menu">
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck1" name="Bat_sr" value="3"><label
+                    class="form-check-label" for="exampleCheck1">Batting SR.</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck2" name="Age" value="8"><label
+                    class="form-check-label" for="exampleCheck2">Age</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck3" name="Spin" value="10"><label
+                    class="form-check-label" for="exampleCheck3">Spin</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck4" name="Pace" value="11"><label
+                    class="form-check-label" for="exampleCheck4">Pace</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck5" name="Bowl_sr" value="7"><label
+                    class="form-check-label" for="exampleCheck5">Bowling SR.</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck6" name="ER" value="9"><label
+                    class="form-check-label" for="exampleCheck6">Economy</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck7" name="Bat_innings"
+                    value="1"><label class="form-check-label" for="exampleCheck7">Batting Innings</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck7" name="Bowl_innings"
+                    value="4"><label class="form-check-label" for="exampleCheck7">Bowling Innings</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck8" name="Price" value="6"><label
+                    class="form-check-label" for="exampleCheck8">Price</label></li>
+                <li><button class="ok-button">Ok</button></li>
+              </ul>
+              {% else %}
+              <ul class="dropdown-menu">
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck1" name="sr" value="4"><label
+                    class="form-check-label" for="exampleCheck1">SR.</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck2" name="age" value="5"><label
+                    class="form-check-label" for="exampleCheck2">Age</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck3" name="ER" value="3"><label
+                    class="form-check-label" for="exampleCheck3">Economy</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck4" name="Innings" value="1"><label
+                    class="form-check-label" for="exampleCheck4">Innings</label></li>
+                <li><input type="checkbox" class="form-check-input" id="exampleCheck5" name="Price" value="6"><label
+                    class="form-check-label" for="exampleCheck5">Price</label></li>
+                <li><button class="ok-button">Ok</button></li>
+              </ul>
+              {% endif %}
+            </form>
+          </li>
+        </ul>
+        <form class="form" action="/similar" method="post">
+          <button class="btn btn-outline-success" type="submit" name="search" value="search">Search</button>
+        </form>
+        <form class="form" action="/similar" method="post">
+          <button class="btn btn-outline-success" type="submit" name="roster" value="roster">Roster</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="bg-container">
+    <header>
+      <h4>&#127951;{{category}}</h4>
+    </header>
+    <div class="d-flex flex-row">
+      <div class="left-column">
+        <div class="card centered-card" style="width: 18rem; ">
+          <img src="{{ url_for('static', filename='images/Player Image.jpg') }}" alt="image">
+          <div class="card-body">
+            <h5 class="card-title">{{data[0]}}</h5>
+            <p class="card-text">is Up for Auction Now!!</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">AVG: {{data[1]}}</li>
+            <li class="list-group-item">SR: {{data[2]}}</li>
+            <li class="list-group-item">{{data[3]}} Cr.</li>
+          </ul>
+          <!--
+              <div class="card-body">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+              </div>
+              -->
+        </div>
+        <br>
+        <div class="sold" style="width: 18rem; ">
+          <form action="/similar" method="post" class="form">
+            <div class="input-group mb-3 align-items-center">
+              <input type="text" name="rupees" class="form-control equal-height" placeholder="Rupees in Cr."
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary equal-height" type="submit" id="button-addon2">Click to
+                Buy</button>
+            </div>
+          </form>
+        </div>
+        <div class="description">
+          <ul>
+            <li>According to the form</li>
+            <li>I suggest .....</li>
+          </ul>
+        </div>
+      </div>
+      <div class="right-column">
+        <div class="d-flex flex-row">
+          <div class="card bg-card" style="width: 10rem; margin:20px;" data-player-data="{{ data[0] }}">
+            <img src="{{ url_for('static', filename='images/Player Image.jpg') }}" alt="image">
+            <div class="card-body">
+              {% if neighbors and neighbors|length >= 1 %}
+              <h5 class="card-title">{{ neighbors[1][0] }}</h5>
+              {% else %}
+              <h5 class="card-title">Player Name Not Available</h5>
+              {% endif %}
+            </div>
+            <ul class="list-group list-group-flush">
+              {% if neighbors %}
+              <li class="list-group-item">{{neighbors[1][6]}} Cr.</li>
+              {% else %}
+              <li class="list-group-item">An item</li>
+              {% endif %}
+            </ul>
+            <!--
+                  <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                  </div>
+                  -->
+          </div>
+          <div class="card bg-card" style="width: 10rem; margin:20px;" data-player-data="{{ data[0] }}">
+            <img src="{{ url_for('static', filename='images/Player Image.jpg') }}" alt="image">
+            <div class="card-body">
+              {% if neighbors %}
+              <h5 class="card-title">{{ neighbors[2][0] }}</h5>
+              {% else %}
+              <h5 class="card-title">Player Name Not Available</h5>
+              {% endif %}
+            </div>
+            <ul class="list-group list-group-flush">
+              {% if neighbors %}
+              <li class="list-group-item">{{neighbors[2][6]}} Cr.</li>
+              {% else %}
+              <li class="list-group-item">An item</li>
+              {% endif %}
+            </ul>
+            <!--
+                  <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                  </div>
+                  -->
+          </div>
+          <div class="card bg-card" style="width: 10rem; margin:20px;" data-player-data="{{ data[0] }}">
+            <img src="{{ url_for('static', filename='images/Player Image.jpg') }}" alt="image">
+            <div class="card-body">
+              {% if neighbors %}
+              <h5 class="card-title">{{ neighbors[3][0] }}</h5>
+              {% else %}
+              <h5 class="card-title">Player Name Not Available</h5>
+              {% endif %}
+            </div>
+            <ul class="list-group list-group-flush">
+              {% if neighbors %}
+              <li class="list-group-item">{{neighbors[3][6]}} Cr.</li>
+              {% else %}
+              <li class="list-group-item">An item</li>
+              {% endif %}
+            </ul>
+            <!--
+                  <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                  </div>
+                  -->
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+          <div class="card bg-card" style="width: 10rem; margin:20px;" data-player-data="{{ data[0] }}">
+            <img src="{{ url_for('static', filename='images/Player Image.jpg') }}" alt="image">
+            <div class="card-body">
+              {% if neighbors %}
+              <h5 class="card-title">{{ neighbors[4][0] }}</h5>
+              {% else %}
+              <h5 class="card-title">Player Name Not Available</h5>
+              {% endif %}
+            </div>
+            <ul class="list-group list-group-flush">
+              {% if neighbors %}
+              <li class="list-group-item">{{neighbors[4][6]}} Cr.</li>
+              {% else %}
+              <li class="list-group-item">An item</li>
+              {% endif %}
+            </ul>
+            <!--
+              <div class="card-body">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+              </div>
+              -->
+          </div>
+
+          <div class="card bg-card" style="width: 10rem; margin:20px;" data-player-data="{{ data[0] }}">
+            <img src="{{ url_for('static', filename='images/Player Image.jpg') }}" alt="image">
+            <div class="card-body">
+              {% if neighbors %}
+              <h5 class="card-title">{{ neighbors[5][0] }}</h5>
+              {% else %}
+              <h5 class="card-title">Player Name Not Available</h5>
+              {% endif %}
+            </div>
+            <ul class="list-group list-group-flush">
+              {% if neighbors %}
+              <li class="list-group-item">{{neighbors[5][6]}} Cr.</li>
+              {% else %}
+              <li class="list-group-item">An item</li>
+              {% endif %}
+            </ul>
+            <!--
+              <div class="card-body">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+              </div>
+              -->
+          </div>
+
+          <div class="card bg-card" style="width: 10rem; margin:20px;" data-player-data="{{ data[0] }}">
+            <img src="{{ url_for('static', filename='images/Player Image.jpg') }}" alt="image">
+            <div class="card-body">
+              {% if neighbors %}
+              <h5 class="card-title">{{ neighbors[6][0] }}</h5>
+              {% else %}
+              <h5 class="card-title">Player Name Not Available</h5>
+              {% endif %}
+            </div>
+            <ul class="list-group list-group-flush">
+              {% if neighbors %}
+              <li class="list-group-item">{{neighbors[6][6]}} Cr.</li>
+              {% else %}
+              <li class="list-group-item">An item</li>
+              {% endif %}
+            </ul>
+            <!--
+              <div class="card-body">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+              </div>
+              -->
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+          <div class="card bg-card" style="width: 10rem; margin:20px;" data-player-data="{{ data[0] }}">
+            <img src="{{ url_for('static', filename='images/Player Image.jpg') }}" alt="image">
+            <div class="card-body">
+              {% if neighbors %}
+              <h5 class="card-title">{{ neighbors[7][0] }}</h5>
+              {% else %}
+              <h5 class="card-title">Player Name Not Available</h5>
+              {% endif %}
+            </div>
+            <ul class="list-group list-group-flush">
+              {% if neighbors %}
+              <li class="list-group-item">{{neighbors[7][6]}} Cr.</li>
+              {% else %}
+              <li class="list-group-item">An item</li>
+              {% endif %}
+            </ul>
+            <!--
+              <div class="card-body">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+              </div>
+              -->
+          </div>
+
+          <div class="card bg-card" style="width: 10rem; margin:20px;" data-player-data="{{ data[0] }}">
+            <img src="{{ url_for('static', filename='images/Player Image.jpg') }}" alt="image">
+            <div class="card-body">
+              {% if neighbors %}
+              <h5 class="card-title">{{ neighbors[8][0] }}</h5>
+              {% else %}
+              <h5 class="card-title">Player Name Not Available</h5>
+              {% endif %}
+            </div>
+            <ul class="list-group list-group-flush">
+              {% if neighbors %}
+              <li class="list-group-item">{{neighbors[8][6]}} Cr.</li>
+              {% else %}
+              <li class="list-group-item">An item</li>
+              {% endif %}
+            </ul>
+            <!--
+              <div class="card-body">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+              </div>
+              -->
+          </div>
+
+          <div class="card bg-card" style="width: 10rem; margin:20px;" data-player-data="{{ data[0] }}">
+            <img src="{{ url_for('static', filename='images/Player Image.jpg') }}" alt="image">
+            <div class="card-body">
+              {% if neighbors %}
+              <h5 class="card-title">{{ neighbors[9][0] }}</h5>
+              {% else %}
+              <h5 class="card-title">Player Name Not Available</h5>
+              {% endif %}
+            </div>
+            <ul class="list-group list-group-flush">
+              {% if neighbors %}
+              <li class="list-group-item">{{neighbors[9][6]}} Cr.</li>
+              {% else %}
+              <li class="list-group-item">An item</li>
+              {% endif %}
+            </ul>
+            <!--
+              <div class="card-body">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+              </div>
+              -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var tooltipTriggerList = document.querySelectorAll('.bg-card');
+      tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        var playerData = tooltipTriggerEl.getAttribute('data-player-data');
+        var tooltipTitle = 'Similar to ' + playerData + ' based on the requirements selected. This is calculated using KNearestNeighbors';
+        new bootstrap.Tooltip(tooltipTriggerEl, {
+          placement: 'bottom',
+          title: tooltipTitle
+        });
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+</html>
