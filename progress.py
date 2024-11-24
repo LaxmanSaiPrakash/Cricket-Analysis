@@ -1,11 +1,11 @@
 def calci(Catcount, left):
-    progress = [0, 0 , 0]
+    progress = [0, 0, 0]
     Batsman = Catcount[0] + Catcount[1]
-    if Batsman <= 4:
-        progress[0] = (Batsman/4)*100
+    if Batsman <= 3:
+        progress[0] = (Batsman/3)*100
     else:
         progress[0] = 100
-    if Catcount[2] >=1:
+    if Catcount[2] >= 2:
         progress[1] = 100
     else:
         progress[1] = 0

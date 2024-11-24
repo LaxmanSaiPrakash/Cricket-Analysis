@@ -1,7 +1,8 @@
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
 
-def main(query, dataset,selected_data, k=10, distance_metric='euclidean'):
+
+def main(query, dataset, selected_data, k=10, distance_metric='euclidean'):
     # Convert data into numpy arrays
     X = np.array(selected_data)
     query1 = np.array([query[1:]])
