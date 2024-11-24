@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #ffffff;
+        /* White background */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      /* Navbar Styling */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to right, #41cef5, #1b8fcd);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+      }
+      .navbar-brand {
+        color: #ffffff;
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+      .navbar-brand span {
+        color: #2f4045;
+        text-transform: capitalize;
+      }
+      .navbar-nav .nav-link {
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 500;
+        margin-right: 20px;
+        transition: color 0.3s ease;
+      }
+      .navbar-nav .nav-link:hover {
+        color: #ffdd57;
+      }
+      .navbar-toggler {
+        border: none;
+        background-color: #ffffff;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+      .navbar-toggler-icon {
+        background-image: linear-gradient(to right, #41cef5, #1b8fcd);
+      }
+      .Logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #ffffff;
+        box-shadow: 0 0 10px rgba(255, 221, 87, 0.8);
+        transition: box-shadow 0.3s ease;
+      }
+      .Logo:hover {
+        box-shadow: 0 0 20px rgba(255, 221, 87, 1);
+      }
+
+      /* Search Bar Styling */
+      .search-bar input {
+        border: 2px solid #ebebeb;
+        border-radius: 30px;
+        padding: 5px 15px;
+        outline: none;
+        /* transition: border-color 0.3s ease; */
+      }
+
+      .search-bar input:focus {
+        border-color: #e4e4e4;
+      }
+
+      .btn-search {
+        color: #ffffff;
+        background-color: #0c3233;
+        border: none;
+        border-radius: 30px;
+        padding: 5px 20px;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .btn-search:hover {
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      .main-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 70px; /* Leave space for the navbar */
+        padding: 20px;
+      }
+
+      .left-container,
+      .right-container {
+        /* width: 50%;  */
+        /* Set width for containers */
+        padding: 30px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        background-color: #f9f9f9; /* Light gray background for containers */
+        margin: 20px;
+        margin-top: 50px;
+      }
+
+      .left-container {
+        margin-left: 10%;
+        max-width: 800px;
+        overflow-y: auto; /* Enable scrolling */
+        max-height: 620px; /* Set max height for scrolling */
+      }
+
+      .right-container {
+        height: 90%;
+        max-width: 50%; /* Adjust as needed */
+      }
+
+      table {
+        width: 100%; /* Ensure tables fill their containers */
+        border-collapse: collapse;
+        border-radius: 10px; /* Rounded corners for tables */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: #d0ebff; /* Light blue background for table */
+      }
+
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #b0c4de; /* Light border color */
+        color: #333333; /* Dark text for better readability */
+      }
+
+      th {
+        background-color: #87cefa; /* Sky blue for table headers */
+        font-weight: bold;
+      }
+
+      tbody tr:hover {
+        background-color: #b0e0e6; /* Pale turquoise on hover */
+      }
+
+      p {
+        font-size: 16px;
+        color: #555555; /* Soft text color */
+      }
+
+      .highlight {
+        color: #ff4500; /* Highlighted text color (orange-red) */
+        font-weight: bold;
+      }
+
+      .error {
+        color: #d9534f; /* Bootstrap danger red */
+        font-weight: bold;
+      }
+      /*purse container */
+      .e-card {
+        margin: 50px auto;
+        background: transparent;
+        box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.45);
+        position: relative;
+        width: 400px;
+        height: 200px;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .wave {
+        position: absolute;
+        width: 500px;
+        height: 800px;
+        opacity: 0.6;
+        left: 0;
+        top: 0;
+        margin-left: -50%;
+        margin-top: -70%;
+        background: linear-gradient(744deg, #f4f4f4, #42c9f7 60%, #ffffff);
+      }
+
+      .icon {
+        width: 3em;
+        margin-top: -1em;
+        padding-bottom: 1em;
+      }
+
+      .infotop {
+        text-align: center;
+        font-size: 17px;
+        font-family: "Times New Roman", Times, serif;
+        position: absolute;
+        top: 3em;
+        left: 0;
+        right: 0;
+        color: rgb(28, 28, 28);
+        font-weight: 600;
+      }
+
+      .name {
+        font-size: 14px;
+        font-weight: 100;
+        position: relative;
+        top: 1em;
+        text-transform: lowercase;
+      }
+
+      .wave:nth-child(2),
+      .wave:nth-child(3) {
+        top: 210px;
+      }
+
+      .playing .wave {
+        border-radius: 40%;
+        animation: wave 3000ms infinite linear;
+      }
+
+      .wave {
+        border-radius: 40%;
+        animation: wave 55s infinite linear;
+      }
+
+      .playing .wave:nth-child(2) {
+        animation-duration: 4000ms;
+      }
+
+      .wave:nth-child(2) {
+        animation-duration: 50s;
+      }
+
+      .playing .wave:nth-child(3) {
+        animation-duration: 5000ms;
+      }
+
+      .wave:nth-child(3) {
+        animation-duration: 45s;
+      }
+
+      @keyframes wave {
+        0% {
+          transform: rotate(360deg);
+        }
+
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+      .page-heading {
+        align-items: center;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+      }
+      .page {
+        font-family: "Times New Roman", Times, serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!--Navbar Container-->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img
+            src="{{ url_for('static', filename='images/Logo.png') }}"
+            alt="Logo"
+            class="Logo"
+          />
+          <span>Cricket Analytics</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <form
+              id="newhome"
+              method="POST"
+              action="/newhome"
+              style="display: none"
+            ></form>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                onclick="document.getElementById('newhome').submit();"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item"></li>
+            <form
+              id="my-team-form"
+              method="POST"
+              action="/franchise"
+              style="display: none"
+            ></form>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                onclick="document.getElementById('my-team-form').submit();"
+                >My Team</a
+              >
+            </li>
+          </ul>
+          <!--search bar-->
+          <!-- <form class="d-flex search-bar">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-search" type="submit">Search</button>
+          </form> -->
+          <form class="d-flex" action="/admin" method="post">
+            <button
+              class="btn btn-search"
+              type="submit"
+              name="logout"
+              value="logout"
+            >
+              logout
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- left container -->
+    <div class="main-container">
+      <div class="left-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Overseas</th>
+              <th>Wicket Keeper</th>
+              <th>Category</th>
+              <th>Sold Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for data in dataset %}
+            <tr>
+              <td>{{ data[1] }}</td>
+              {% if data[2] == 1 %}
+              <td>&#10004;</td>
+              {% else %}
+              <td>x</td>
+              {% endif %} {% if data[4] == 1 %}
+              <td>&#10004;</td>
+              {% else %}
+              <td>x</td>
+              {% endif %} {% if data[5] == 'TopOrder' or data[5] ==
+              'MiddleOrder' %}
+              <td>Batsman</td>
+              {% elif data[5] == 'Spinner' or data[5] == 'Pacer' %}
+              <td>Bowler</td>
+              {% elif data[5] == 'AllRounder' %}
+              <td>AllRounder</td>
+              {% endif %}
+              <td>{{data[0]}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!--right container-->
+      <div class="right-container">
+        {% set counts = {'AllRounder': 0, 'MiddleOrder': 0, 'TopOrder': 0,
+        'Spinner': 0, 'Pacer': 0} %} {% for data in dataset %} {% set category =
+        data[5] %} {% if category in counts %} {% set _ =
+        counts.update({category: counts[category] + 1}) %} {% endif %} {% endfor
+        %}
+
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for category, count in counts.items() %}
+            <tr>
+              <td>{{ category }}</td>
+              <td>{{ count }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <!--Purse Container-->
+        <div class="e-card playing">
+          <div class="image"></div>
+          <div class="wave"></div>
+          <div class="wave"></div>
+          <div class="wave"></div>
+          <!-- <div class="wave"></div> -->
+          <div class="infotop">
+            <h1>Remaining Purse</h1>
+            <h1>{{rem_purse}} Cr.</h1>
+          </div>
+        </div>
+
+        <!-- {% if const[0] == False %}
+        <div class="error">* Constraints not satisfied</div>
+        {% endif %} -->
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

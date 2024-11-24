@@ -1,261 +1,407 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
     <style>
-      
-        .bg-container{
-          background-image: url('...');  
-          height:100vh; 
-          
-        }
-        .left-column{
-            width:50%;
-            display:flex;
-            flex-direction: column;
-            justify-content: center;
-            margin:auto;
-        }
-        .right-column{
-            width:50%;
-            margin:auto;
-        }
-        .centered-card {
-            align-items: center;
-            box-shadow: 10px 10px 8px #888888;
-        }
-        header h4 {
-            
-            font-family:  sans-serif;
-            font-weight: 600;
-            background-image: conic-gradient(#553c9a, #ee4b2b, #00c2cb, #553c9a);
-            color: transparent;
-            background-clip: text;
-            -webkit-background-clip: text;
-            margin-left:100px;
-            padding-top: 25px;
-        }
-        .Logo{
-            width:80px;
-            height:50px;
-            border-radius:50%;
-        }
-        .Navbar{
-            background-color: rgb(66, 201, 247);
-        }
-        .bg-card{
-          background-color:  rgb(156, 225, 248);
-          box-shadow: 10px 10px 8px #888888;
-          width:200px;  
-        }
-        .description{
-          font-weight:bold;
-          margin-top: 50px;
-          margin-left: 170px;
-        }
-        .ok-button{
-          background-color:rgb(66, 201, 247);
-          color:white;
-          width:100px;
-          text-align: center;
-          border-width:0px;
-          margin-left:20px;
-        }
-        .card-img-top{
-            width :163px;
-            height:175px;  
-                   
-        }
-        img {
-          margin-left: auto;
-          margin-right: auto;
-        }
+      .bg-container {
+        background-image: url("...");
+        height: 100vh;
+      }
+      .left-column {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+      }
+      .right-column {
+        width: 50%;
+        margin: auto;
+      }
+      .centered-card {
+        align-items: center;
+        box-shadow: 10px 10px 8px #888888;
+      }
+      header h4 {
+        font-family: sans-serif;
+        font-weight: 600;
+        background-image: conic-gradient(#553c9a, #ee4b2b, #00c2cb, #553c9a);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        margin-left: 100px;
+        padding-top: 25px;
+      }
+      .Logo {
+        width: 80px;
+        height: 50px;
+        border-radius: 50%;
+      }
+      .Navbar {
+        background-color: rgb(66, 201, 247);
+      }
+      .bg-card {
+        background-color: rgb(156, 225, 248);
+        box-shadow: 10px 10px 8px #888888;
+        width: 200px;
+      }
+      .description {
+        font-weight: bold;
+        margin-top: 50px;
+        margin-left: 170px;
+      }
+      .ok-button {
+        background-color: rgb(66, 201, 247);
+        color: white;
+        width: 100px;
+        text-align: center;
+        border-width: 0px;
+        margin-left: 20px;
+      }
+      .card-img-top {
+        width: 163px;
+        height: 175px;
+      }
+      img {
+        margin-left: auto;
+        margin-right: auto;
+      }
     </style>
-</head>
+  </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-lightblue Navbar">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="{{ url_for('static', filename='images/Logo.png') }}" class="Logo" alt="Logo">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" style="color:white;"aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item" >
-                <a class="nav-link" style="color:white;" href="#">Link</a>
-              </li> 
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="{{ url_for('static', filename='images/Logo.png') }}"
+            class="Logo"
+            alt="Logo"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                style="color: white"
+                aria-current="page"
+                href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: white" href="#">Link</a>
+            </li>
+          </ul>
+          <form class="form" action="/admin" method="post">
+            <button
+              class="btn btn-outline-success"
+              type="submit"
+              name="logout"
+              value="logout"
+            >
+              logout
+            </button>
+          </form>
+          <form class="form" action="/admin" method="post">
+            <button
+              class="btn btn-outline-success"
+              type="submit"
+              name="verify"
+              value="verify"
+            >
+              Verify
+            </button>
+          </form>
         </div>
+      </div>
     </nav>
     <div class="bg-container">
       <header>
-          <h4>&#127951;Teams</h4>
+        <h4>&#127951;Teams</h4>
       </header>
       <div class="">
-          <div class="right-column">
+        <div class="right-column">
           <div class="d-flex flex-row">
-              <div class="card bg-card"  style="width:15rem; margin:20px;">
-                <img src="{{ url_for('static', filename='images/csk.png') }}"
-                class="card-img-top" alt="Image">
-                  <div class="card-body">
-                  <h5 class="card-title">CSK</h5>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <form action="/admin" method="post" id="removeForm">
-                      <button class="btn btn-outline-secondary equal-height" type="submit" name="chennai"
-                        value="chennai" id="button-addon2" style="width: 100%;">Chennai Super Kings</button>
-                    </form>
-                  </ul>
+            <div class="card bg-card" style="width: 15rem; margin: 20px">
+              <img
+                src="{{ url_for('static', filename='images/csk.png') }}"
+                class="card-img-top"
+                alt="Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title">CSK</h5>
               </div>
-              <div class="card bg-card" style="width:15rem; margin:20px;">
-                <img src="{{ url_for('static', filename='images/srh.png') }}" class="card-img-top" alt="Image">
+              <ul class="list-group list-group-flush">
+                <form action="/admin" method="post" id="removeForm">
+                  <button
+                    class="btn btn-outline-secondary equal-height"
+                    type="submit"
+                    name="chennai"
+                    value="chennai"
+                    id="button-addon2"
+                    style="width: 100%"
+                  >
+                    Chennai Super Kings
+                  </button>
+                </form>
+              </ul>
+            </div>
+            <div class="card bg-card" style="width: 15rem; margin: 20px">
+              <img
+                src="{{ url_for('static', filename='images/srh.png') }}"
+                class="card-img-top"
+                alt="Image"
+              />
 
-                  <div class="card-body">
-                  <h5 class="card-title">SRH</h5>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <form action="/admin" method="post" id="removeForm">
-                      <button class="btn btn-outline-secondary equal-height" type="submit" name="hyderabad"
-                        value="hyderabad" id="button-addon2" style="width: 100%;">Sunrisers Hyderabad</button>
-                    </form>
-                  </ul>
-                  
+              <div class="card-body">
+                <h5 class="card-title">SRH</h5>
               </div>
-              <div class="card bg-card" style="width:15rem; margin:20px;">
-                <img src="{{ url_for('static', filename='images/mi.png') }}" class="card-img-top" alt="Image">
-                  <div class="card-body">
-                  <h5 class="card-title">MI</h5>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <form action="/admin" method="post" id="removeForm">
-                      <button class="btn btn-outline-secondary equal-height" type="submit" name="mumbai"
-                        value="mumbai" id="button-addon2" style="width: 100%;">Mumbai Indians</button>
-                    </form>
-                  </ul>
-                  
+              <ul class="list-group list-group-flush">
+                <form action="/admin" method="post" id="removeForm">
+                  <button
+                    class="btn btn-outline-secondary equal-height"
+                    type="submit"
+                    name="hyderabad"
+                    value="hyderabad"
+                    id="button-addon2"
+                    style="width: 100%"
+                  >
+                    Sunrisers Hyderabad
+                  </button>
+                </form>
+              </ul>
+            </div>
+            <div class="card bg-card" style="width: 15rem; margin: 20px">
+              <img
+                src="{{ url_for('static', filename='images/mi.png') }}"
+                class="card-img-top"
+                alt="Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title">MI</h5>
               </div>
+              <ul class="list-group list-group-flush">
+                <form action="/admin" method="post" id="removeForm">
+                  <button
+                    class="btn btn-outline-secondary equal-height"
+                    type="submit"
+                    name="mumbai"
+                    value="mumbai"
+                    id="button-addon2"
+                    style="width: 100%"
+                  >
+                    Mumbai Indians
+                  </button>
+                </form>
+              </ul>
+            </div>
+          </div>
+          <div class="d-flex flex-row">
+            <div class="card bg-card" style="width: 15rem; margin: 20px">
+              <img
+                src="{{ url_for('static', filename='images/rr.png') }}"
+                class="card-img-top"
+                alt="Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title">RR</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <form action="/admin" method="post" id="removeForm">
+                  <button
+                    class="btn btn-outline-secondary equal-height"
+                    type="submit"
+                    name="rajasthan"
+                    value="rajasthan"
+                    id="button-addon2"
+                    style="width: 100%"
+                  >
+                    Rajasthan Royals
+                  </button>
+                </form>
+              </ul>
+            </div>
+
+            <div class="card bg-card" style="width: 15rem; margin: 20px">
+              <img
+                src="{{ url_for('static', filename='images/rcb.png') }}"
+                class="card-img-top"
+                alt="Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title">RCB</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <form action="/admin" method="post" id="removeForm">
+                  <button
+                    class="btn btn-outline-secondary equal-height"
+                    type="submit"
+                    name="bangalore"
+                    value="bangalore"
+                    id="button-addon2"
+                  >
+                    Royal Challengers Banglore
+                  </button>
+                </form>
+              </ul>
+            </div>
+
+            <div class="card bg-card" style="width: 15rem; margin: 20px">
+              <img
+                src="{{ url_for('static', filename='images/kkr.png') }}"
+                class="card-img-top"
+                alt="Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title">KKR</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <form action="/admin" method="post" id="removeForm">
+                  <button
+                    class="btn btn-outline-secondary equal-height"
+                    type="submit"
+                    name="kolkata"
+                    value="kolkata"
+                    id="button-addon2"
+                    style="width: 100%"
+                  >
+                    Kolkata Knight Riders
+                  </button>
+                </form>
+              </ul>
+            </div>
+          </div>
+          <div class="d-flex flex-row">
+            <div class="card bg-card" style="width: 15rem; margin: 20px">
+              <img
+                src="{{ url_for('static', filename='images/gt.png') }}"
+                class="card-img-top"
+                alt="Image"
+              />
+
+              <div class="card-body">
+                <h5 class="card-title">GT</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <form action="/admin" method="post" id="removeForm">
+                  <button
+                    class="btn btn-outline-secondary equal-height"
+                    type="submit"
+                    name="gujarat"
+                    value="gujarat"
+                    id="button-addon2"
+                    style="width: 100%"
+                  >
+                    Gujarat Titans
+                  </button>
+                </form>
+              </ul>
+            </div>
+
+            <div class="card bg-card" style="width: 15rem; margin: 20px">
+              <img
+                src="{{ url_for('static', filename='images/lsg.png') }}"
+                class="card-img-top"
+                alt="Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title">LSG</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <form action="/admin" method="post" id="removeForm">
+                  <button
+                    class="btn btn-outline-secondary equal-height"
+                    type="submit"
+                    name="lucknow"
+                    value="lucknow"
+                    id="button-addon2"
+                    style="width: 100%"
+                  >
+                    Lucknow Super Giants
+                  </button>
+                </form>
+              </ul>
+            </div>
+
+            <div class="card bg-card" style="width: 15rem; margin: 20px">
+              <img
+                src="{{ url_for('static', filename='images/dc.png') }}"
+                class="card-img-top"
+                alt="Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title">DC</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <form action="/admin" method="post" id="removeForm">
+                  <button
+                    class="btn btn-outline-secondary equal-height"
+                    type="submit"
+                    name="delhi"
+                    value="delhi"
+                    id="button-addon2"
+                    style="width: 100%"
+                  >
+                    Delhi Capitals
+                  </button>
+                </form>
+              </ul>
+            </div>
+          </div>
+          <div class="d-flex flex-row">
+            <div class="card bg-card" style="width: 13.5rem; margin: 20px">
+              <img
+                src="{{ url_for('static', filename='images/pbks.png') }}"
+                class="card-img-top"
+                alt="Image"
+              />
+
+              <div class="card-body">
+                <h5 class="card-title">PBKS</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <form action="/admin" method="post" id="removeForm">
+                  <button
+                    class="btn btn-outline-secondary equal-height"
+                    type="submit"
+                    name="punjab"
+                    value="punjab"
+                    id="button-addon2"
+                    style="width: 100%"
+                  >
+                    Punjab Kings
+                  </button>
+                </form>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="d-flex flex-row">
-          <div class="card bg-card" style="width:15rem; margin:20px;">
-            <img src="{{ url_for('static', filename='images/rr.png') }}" class="card-img-top" alt="Image">
-              <div class="card-body">
-              <h5 class="card-title">RR</h5>
-              </div>
-              <ul class="list-group list-group-flush">
-                <form action="/admin" method="post" id="removeForm">
-                  <button class="btn btn-outline-secondary equal-height" type="submit" name="rajasthan"
-                    value="rajasthan" id="button-addon2" style="width: 100%;">Rajasthan Royals</button>
-                </form>
-              </ul>
-              
-          </div>
-
-          <div class="card bg-card" style="width:15rem; margin:20px;">
-            <img src="{{ url_for('static', filename='images/rcb.png') }}" class="card-img-top" alt="Image">
-              <div class="card-body">
-              <h5 class="card-title">RCB</h5>
-              </div>
-              <ul class="list-group list-group-flush">
-                <form action="/admin" method="post" id="removeForm">
-                  <button class="btn btn-outline-secondary equal-height" type="submit" name="bangalore"
-                    value="bangalore" id="button-addon2">Royal Challengers Banglore</button>
-                </form>
-              </ul>
-              
-          </div>
-
-          <div class="card bg-card" style="width:15rem; margin:20px;">
-            <img src="{{ url_for('static', filename='images/kkr.png') }}" class="card-img-top" alt="Image">
-              <div class="card-body">
-              <h5 class="card-title">KKR</h5>
-              </div>
-              <ul class="list-group list-group-flush">
-                <form action="/admin" method="post" id="removeForm">
-                  <button class="btn btn-outline-secondary equal-height" type="submit" name="kolkata"
-                    value="kolkata" id="button-addon2" style="width: 100%;">Kolkata Knight Riders</button>
-                </form>
-              </ul>
-              
-          </div>
-        </div>
-        <div class="d-flex flex-row">
-          <div class="card bg-card" style="width:15rem; margin:20px;">
-            <img src="{{ url_for('static', filename='images/gt.png') }}" class="card-img-top" alt="Image">
-
-              <div class="card-body">
-              <h5 class="card-title">GT</h5>
-              </div>
-              <ul class="list-group list-group-flush">
-                <form action="/admin" method="post" id="removeForm">
-                  <button class="btn btn-outline-secondary equal-height" type="submit" name="gujarat"
-                    value="gujarat" id="button-addon2" style="width: 100%;">Gujarat Titans</button>
-                </form>
-              </ul>
-              
-          </div>
-
-          <div class="card bg-card" style="width:15rem; margin:20px;">
-            <img src="{{ url_for('static', filename='images/lsg.png') }}" class="card-img-top" alt="Image">
-              <div class="card-body">
-              <h5 class="card-title">LSG</h5>
-              </div>
-              <ul class="list-group list-group-flush">
-                <form action="/admin" method="post" id="removeForm">
-                  <button class="btn btn-outline-secondary equal-height" type="submit" name="lucknow"
-                    value="lucknow" id="button-addon2" style="width: 100%;">Lucknow Super Giants</button>
-                </form>
-              </ul>
-              
-          </div>
-
-          <div class="card bg-card" style=" width:15rem;margin:20px;">
-            <img src="{{ url_for('static', filename='images/dc.png') }}" class="card-img-top" alt="Image">
-              <div class="card-body">
-              <h5 class="card-title">DC</h5>
-              </div>
-              <ul class="list-group list-group-flush">
-                <form action="/admin" method="post" id="removeForm">
-                  <button class="btn btn-outline-secondary equal-height" type="submit" name="delhi"
-                    value="delhi" id="button-addon2" style="width: 100%;">Delhi Capitals</button>
-                </form>
-              </ul>
-              
-          </div>
-        </div>
-        <div class="d-flex flex-row">
-            <div class="card bg-card" style="width:13.5rem; margin:20px;">
-                <img src="{{ url_for('static', filename='images/pbks.png') }}" 
-                class="card-img-top" alt="Image">
-    
-                  <div class="card-body">
-                  <h5 class="card-title">PBKS</h5>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <form action="/admin" method="post" id="removeForm">
-                      <button class="btn btn-outline-secondary equal-height" type="submit" name="punjab"
-                        value="punjab" id="button-addon2" style="width: 100%;">Punjab Kings</button>
-                    </form>
-                  </ul>
-                
-              </div>
-        </div>
-      </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
