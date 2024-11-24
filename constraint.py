@@ -7,20 +7,20 @@ def constraint(dataset):
     AllRounder = 0
     count = 0
     for data in dataset:
-        overseas += data[1]
-        credits += data[2]
-        wicket_keeper += data[3]
-        if data[4] == "TopOrder" or data[4] == "MiddleOrder":
+        overseas += data[2]
+        credits += data[3]
+        wicket_keeper += data[4]
+        if data[5] == "TopOrder" or data[5] == "MiddleOrder":
             Batsman += 1
-        elif data[4] == "AllRounder":
+        elif data[5] == "AllRounder":
             AllRounder += 1
         else:
             Bowler += 1
-    if Batsman >= 4:
+    if Batsman >= 3:
         count +=1
     if Bowler >= 4:
         count += 1
-    if AllRounder >=1:
+    if AllRounder >=2:
         count+=1
     if overseas >=4:
         count+=1
